@@ -18,20 +18,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'date_birth')->widget(\yii\widgets\MaskedInput::className(), [
-            'mask' => '99/99/9999',
-    ]) ?>
+    <?= $form->field($model, 'date_birth')->textInput() ?>
 
-    <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(), [
-            'mask' => '+7(999)999-99-99',
-    ]) ?>
+    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'role')->dropDownList([ 'admin' => 'Admin', 'user' => 'User', ], ['prompt' => '']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-success']) ?>
-        <span>Уже зарегистрированы? <a href="/site/login">Авторизация</a></span>
+        <?= Html::submitButton('', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

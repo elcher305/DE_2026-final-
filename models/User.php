@@ -30,7 +30,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             ['email', 'email'],
             ['username', 'match', 'pattern' => '/^[A-z0-9]\w*$/i'],
             ['full_name', 'match', 'pattern' => '/^[А-яЁё -]*$/u'],
-            ['phone', 'match', 'pattern' => '/^8?\(\d{3}$\)\d{3}\-\d{2}\-\d{2}$/'],
         ];
     }
 

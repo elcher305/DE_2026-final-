@@ -35,29 +35,24 @@ class Consultation extends \yii\db\ActiveRecord
     const STATUS_DENIED = 'denied';
     const STATUS_APPROVED = 'approved';
 
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return 'consultation';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+
     public function rules()
     {
         return [
             [['status'], 'default', 'value' => 'new'],
-            [['user_id', 'consultation_name', 'start_date', 'start_time', 'payment_method'], 'required'],
-            [['user_id'], 'integer'],
+            [['consultation_name', 'start_date', 'start_time', 'payment_method'], 'required'],
+            [['user_id'], 'default', 'value' => Yii::$app->user->identity->id],
             [['consultation_name', 'payment_method', 'status'], 'string'],
             [['start_date', 'start_time'], 'safe'],
             ['consultation_name', 'in', 'range' => array_keys(self::optsConsultationName())],
             ['payment_method', 'in', 'range' => array_keys(self::optsPaymentMethod())],
-            ['status', 'in', 'range' => array_keys(self::optsStatus())],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+
         ];
     }
 
@@ -69,10 +64,10 @@ class Consultation extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'consultation_name' => 'Consultation Name',
-            'start_date' => 'Start Date',
-            'start_time' => 'Start Time',
-            'payment_method' => 'Payment Method',
+            'consultation_name' => 'Тип консультации',
+            'start_date' => 'Время приема',
+            'start_time' => 'Дата приема',
+            'payment_method' => 'Способ оплаты',
             'status' => 'Status',
         ];
     }
@@ -87,68 +82,51 @@ class Consultation extends \yii\db\ActiveRecord
         return $this->hasMany(Review::class, ['consultation_id' => 'id']);
     }
 
-    /**
-     * Gets query for [[User]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
 
-    /**
-     * column consultation_name ENUM value labels
-     * @return string[]
-     */
+
     public static function optsConsultationName()
     {
         return [
-            self::CONSULTATION_NAME_CIVIL => 'civil',
-            self::CONSULTATION_NAME_CRIMINAL => 'criminal',
-            self::CONSULTATION_NAME_ADMINISTRATIVE => 'administrative',
-            self::CONSULTATION_NAME_LEGAL => 'legal',
+            self::CONSULTATION_NAME_CIVIL => 'гражданского',
+            self::CONSULTATION_NAME_CRIMINAL => 'уголовного',
+            self::CONSULTATION_NAME_ADMINISTRATIVE => 'административного',
+            self::CONSULTATION_NAME_LEGAL => 'юридического',
         ];
     }
 
-    /**
-     * column payment_method ENUM value labels
-     * @return string[]
-     */
+
     public static function optsPaymentMethod()
     {
         return [
-            self::PAYMENT_METHOD_QR_CODE => 'QR code',
-            self::PAYMENT_METHOD_CASH => 'cash',
-            self::PAYMENT_METHOD_TRANSACTION => 'transaction',
+            self::PAYMENT_METHOD_QR_CODE => 'предоплата по QR-коду',
+            self::PAYMENT_METHOD_CASH => 'постоплата в офисе организации',
+            self::PAYMENT_METHOD_TRANSACTION => 'оплата картой МИР',
         ];
     }
 
-    /**
-     * column status ENUM value labels
-     * @return string[]
-     */
+
     public static function optsStatus()
     {
         return [
-            self::STATUS_NEW => 'new',
-            self::STATUS_DENIED => 'denied',
-            self::STATUS_APPROVED => 'approved',
+            self::STATUS_NEW => 'Новая',
+            self::STATUS_DENIED => 'Отказано',
+            self::STATUS_APPROVED => 'Одобрено',
         ];
     }
 
-    /**
-     * @return string
-     */
+
     public function displayConsultationName()
     {
         return self::optsConsultationName()[$this->consultation_name];
     }
 
-    /**
-     * @return bool
-     */
+
     public function isConsultationNameCivil()
     {
         return $this->consultation_name === self::CONSULTATION_NAME_CIVIL;

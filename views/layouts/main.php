@@ -41,6 +41,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
             ['label' => 'Регистрация', 'url' => ['/user/create'], 'visible' => Yii::$app->user->isGuest],
+            ['label' => 'Мои Заявки', 'url' => ['/consultation/index'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isRoleUser()],
+                ['label' => 'Заявки', 'url' => ['/admin/index'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isRoleAdmin()],
             //['label' => 'About', 'url' => ['/site/about']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest
