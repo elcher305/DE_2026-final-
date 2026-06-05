@@ -36,6 +36,7 @@ class Consultation extends \yii\db\ActiveRecord
     const STATUS_APPROVED = 'approved';
 
 
+
     public static function tableName()
     {
         return 'consultation';

@@ -31,12 +31,7 @@ use yii\widgets\ActiveForm;
             ],
             ['prompt' => 'Выберите способ оплаты']) ?>
 
-    <?= $form->field($model, 'status')->dropDownList([
-            'new' => 'Новая',
-            'denied' => 'Отказано',
-            'approved' => 'Одобрено',
-            ],
-            ['prompt' => '']) ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Записаться', ['class' => 'btn btn-success']) ?>

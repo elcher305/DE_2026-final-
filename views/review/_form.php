@@ -12,14 +12,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'user_id')->hiddenInput(
+            ['value' => \Yii::$app->user->identity->id]
+    )->label(false) ?>
 
-    <?= $form->field($model, 'consultation_id')->textInput() ?>
+    <?= $form->field($model, 'consultation_id')->hiddenInput(
+            ['value' => \Yii::$app->request->get('consultation_id')]
+    )->label(false) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6])
+        ->label("Как вам качество услуги?")?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Отправть отзыв', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

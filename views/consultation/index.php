@@ -54,10 +54,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Consultation $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+               'label' => 'Действие',
+               'format' => 'raw',
+               'value' => function( Consultation  $model) {
+                    if ($model->status === Consultation::STATUS_APPROVED
+                    && !$model->getReviews()->andWhere(['user_id' => \Yii::$app->user->id])->exists()){
+                        return Html::a('Оставить отзыв', ['/review/create', 'consultation_id' => $model->id],
+                        ['class' => 'btn btn-primary']);
+                    }
+                    return '-';
+               },
             ],
         ],
     ]); ?>

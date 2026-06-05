@@ -8,14 +8,10 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * ReviewController implements the CRUD actions for Review model.
- */
+
 class ReviewController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
+
     public function behaviors()
     {
         return array_merge(
@@ -31,11 +27,7 @@ class ReviewController extends Controller
         );
     }
 
-    /**
-     * Lists all Review models.
-     *
-     * @return string
-     */
+
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
@@ -57,12 +49,7 @@ class ReviewController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Review model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionView($id)
     {
         return $this->render('view', [
@@ -70,18 +57,14 @@ class ReviewController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Review model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+
     public function actionCreate()
     {
         $model = new Review();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['consultation/index']);
             }
         } else {
             $model->loadDefaultValues();
