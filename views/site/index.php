@@ -1,6 +1,6 @@
 <?php
 
-/** @var yii\web\View $this */
+
 
 $this->title = 'My Yii Application';
 ?>
@@ -12,7 +12,7 @@ $this->title = 'My Yii Application';
         <p class="lead">Зарегистрируйсь, подайте заявку на
             консультацию по интересующему его вопросу.</p>
 
-        <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
+        <p><a class="btn btn-lg btn-success" href="views/consultation/index">Заказать консультацию</a></p>
     </div>
 
     <div class="body-content d-flex justify-content-center">
