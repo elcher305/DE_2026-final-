@@ -67,5 +67,6 @@ $this->title = 'My Yii Application';
             </button>
         </div>
 
+      <footer
     </div>
 </div>

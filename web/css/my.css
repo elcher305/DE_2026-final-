@@ -1,0 +1,236 @@
+.btn {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.btn:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+:root {
+    --gold: #DAA520;
+    --rose-gold: #FFDAB9;
+    --cream: #FFFDDO;
+    --crimson: #DC143C;
+    --dark-green: #006400;
+    --font-oswald: 'Oswald', sans-serif;
+}
+
+
+body {
+    background: #FFFDD0;
+    font-size: 16px;
+
+    line-height: 1.5;
+}
+
+
+h1 {
+
+    font-size: 36px;
+    color: var(--crimson);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+
+    font-size: 24px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}
+
+h3 {
+
+    font-size: 18px;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+
+p, li, .text-main {
+    font-size: 16px;
+}
+
+
+small, .text-muted, .help-block, .hint-block {
+    font-size: 12px;
+    color: var(--dark-green);
+}
+
+
+.navbar {
+    background-color: var(--dark-green) !important;
+    border-bottom: 3px solid var(--gold);
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: var(--cream) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--gold) !important;
+}
+
+
+.btn-primary {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark-green);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #b8860b;
+    border-color: #b8860b;
+    transform: scale(1.02);
+}
+
+.btn-success {
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+    color: var(--cream);
+}
+
+.btn-success:hover {
+    background-color: #004d00;
+    transform: scale(1.02);
+}
+
+
+.card {
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    background-color: var(--rose-gold);
+    border-bottom: 2px solid var(--gold);
+
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+/* поля ввода */
+.form-control, .form-select {
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--crimson);
+    box-shadow: 0 0 0 0.2rem rgba(220, 20, 60, 0.25);
+}
+
+
+label {
+    color: var(--dark-green);
+    font-weight: 500;
+}
+
+
+.grid-view th {
+    background-color: var(--rose-gold);
+    color: var(--dark-green);
+
+    font-weight: 600;
+}
+
+.grid-view td {
+    color: #FFDAB9;
+}
+
+/* пагинация */
+.pagination .page-link {
+    color: var(--gold);
+    border-color: var(--gold);
+
+}
+
+.pagination .active .page-link {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark-green);
+}
+
+
+.footer {
+    color: var(--cream);
+    padding: 1rem 0;
+    margin-top: 2rem;
+    background: #FFFDD0;
+}
+
+
+.btn, .nav-link, .card {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+.alert-success {
+    background-color: var(--dark-green);
+    color: white;
+    border-left: 6px solid var(--gold);
+}
+
+.alert-danger {
+    background-color: var(--crimson);
+    color: white;
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--gold);
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.carousel-indicators button {
+    background-color: var(--gold);
+}
+
+.carousel-indicators .active {
+    background-color: var(--crimson);
+}

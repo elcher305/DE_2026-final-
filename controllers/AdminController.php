@@ -45,8 +45,15 @@ class AdminController extends Controller
 
     public function actionIndex()
     {
+        $query = Consultation::find();
+
+        $status = \Yii::$app->request->get('status');
+        if ($status && $status !== 'all') {
+            $query->andWhere(['status' => $status]);
+        }
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Consultation::find(),
+            'query' => $query,
 
             'pagination' => [
                 'pageSize' => 6
@@ -100,9 +107,9 @@ class AdminController extends Controller
        if ($model){
            $model->status = $status;
            if ($model->save()) {
-               \Yii::$app->session->setFlash('success', 'Статус успешно обновлен');
+               return $this->redirect(['admin/index?success=1']);
            } else {
-               \Yii::$app->session->setFlash('error', 'Ошибка при обновлении статуса');
+               return $this->redirect(['admin/index?success=0']);
            }
        }
        return $this->redirect(['admin/index']);

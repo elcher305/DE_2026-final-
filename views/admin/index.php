@@ -11,6 +11,7 @@ use yii\grid\GridView;
 
 $this->title = 'Личный кабинет админа';
 $this->params['breadcrumbs'][] = $this->title;
+$currentStatus = Yii::$app->session->get('status');
 ?>
 <div class="user-index">
 
